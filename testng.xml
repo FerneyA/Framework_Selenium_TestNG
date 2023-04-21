@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/INM-331/Documents/TestNGDemo_Java"><classes/></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name = "URL" value = "https://the-internet.herokuapp.com/"/>
+    <test name = "Test On Firefox">
+        <parameter name = "BrowserType" value = "Firefox"/>
+        <classes>
+            <class name = "com.demo.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name = "Test On Chrome">
+        <parameter name = "BrowserType" value = "Chrome"/>
+        <classes>
+            <class name = "com.demo.tests.LoginTest"/>
+        </classes>
+    </test>
+</suite>

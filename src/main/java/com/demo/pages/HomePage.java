@@ -13,6 +13,7 @@ public class HomePage {
     }
 
     public LoginPage clickFormAuthentication() {
+        BasePage.fluentWait(linkFormAuthentication, driver);
         driver.findElement(linkFormAuthentication).click();
         return new LoginPage(driver);
     }

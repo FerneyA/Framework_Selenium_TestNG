@@ -12,37 +12,28 @@ import java.util.List;
 
 public class BasePage {
 
-    private WebDriver driver;
-
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public BasePage() {
-    }
-
-    public WebElement findElement(By locator) {
+    public WebElement findElement(By locator, WebDriver driver) {
         return driver.findElement(locator);
     }
 
-    public List<WebElement> findElements(By locator) {
+    public List<WebElement> findElements(By locator, WebDriver driver) {
         return driver.findElements(locator);
     }
 
-    public String getText(WebElement webElement) {
+    public String getText(WebElement webElement, WebDriver driver) {
         return webElement.getText();
     }
 
-    public String getText(By locator) {
+    public String getText(By locator, WebDriver driver) {
         return driver.findElement(locator).getText();
     }
 
-    public void type(String inputText, By locator) {
+    public void type(String inputText, By locator, WebDriver driver) {
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(inputText);
     }
 
-    public Boolean isDisplayed(By locator) {
+    public Boolean isDisplayed(By locator, WebDriver driver) {
         try {
             return driver.findElement(locator).isDisplayed();
         } catch (NoSuchElementException exception) {
@@ -50,7 +41,7 @@ public class BasePage {
         }
     }
 
-    public void typeWithTab(String inputText, By locator) {
+    public void typeWithTab(String inputText, By locator, WebDriver driver) {
         WebElement webElement = driver.findElement(locator);
         webElement.clear();
         int lengthValue = webElement.getAttribute("value").toCharArray().length;
@@ -60,41 +51,41 @@ public class BasePage {
         webElement.sendKeys(inputText);
     }
 
-    public void click(By locator) {
+    public void click(By locator, WebDriver driver) {
         driver.findElement(locator).click();
     }
 
-    public WebElement fluentWait(final By locator) {
+    public static WebElement fluentWait(final By locator, WebDriver driver) {
         // Waiting 50 seconds for an element to be present on the page, checking
         // for its presence once every 5 seconds.
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(50))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
-        return wait.until(driver -> driver.findElement(locator));
+        return wait.until(x -> x.findElement(locator));
     }
 
-    public void webDriverWait(By locator) {
+    public void webDriverWait(By locator, WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public WebElement explicitWaitVisibilityOfElement(By locator) {
+    public WebElement explicitWaitVisibilityOfElement(By locator, WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public WebElement explicitWaitElementToBeClickable(By locator) {
+    public WebElement explicitWaitElementToBeClickable(By locator, WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public Boolean explicitWaitTextToBePresentInElement(By locator, String text) {
+    public Boolean explicitWaitTextToBePresentInElement(By locator, String text, WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
     }
 
-    public void selectOptionDown(By locator, String searchText) {
+    public void selectOptionDown(By locator, String searchText, WebDriver driver) {
         WebElement webElement = driver.findElement(locator);
         webElement.click();
         List<WebElement> options = webElement.findElements(By.tagName("li"));
@@ -108,8 +99,8 @@ public class BasePage {
         }
     }
 
-    public void actionsClick(By locator) {
-        WebElement webElement = findElement(locator);
+    public void actionsClick(By locator, WebDriver driver) {
+        WebElement webElement = findElement(locator, driver);
         Actions actions = new Actions(driver);
         actions.moveToElement(webElement).click().build().perform();
     }

@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 public class LoginTest extends BaseTests {
 
     @Test
-    public void testLoginFacebook() {
+    public void testLoginSecureArea() {
         LoginPage loginPage = homePage.clickFormAuthentication();
         SecureAreaPage secureAreaPage = loginPage.loginSecureArea("tomsmith", "SuperSecretPassword!");
         assertTrue(secureAreaPage.getAlertText()
