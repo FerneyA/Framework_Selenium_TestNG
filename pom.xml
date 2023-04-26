@@ -53,5 +53,25 @@
             <version>3.0.0-M7</version>
             <type>maven-plugin</type>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.6.1</version>
+        </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>login_chrome.xml</suiteXmlFile>
+                        <suiteXmlFile>login_firefox.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
