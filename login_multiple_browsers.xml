@@ -5,10 +5,10 @@
         <listener class-name="utils.SuiteListener"/>
     </listeners>
     <parameter name = "url" value = "https://the-internet.herokuapp.com/"/>
-    <test name = "Test On Firefox">
-        <parameter name = "browserName" value = "Firefox"/>
+    <test name = "Test On Chrome">
+        <parameter name = "browserName" value = "Chrome"/>
         <classes>
-            <class name = "com.demo.tests.LoginSecureAreaFirefoxTest"/>
+            <class name = "com.demo.tests.LoginSecureAreaMultipleBrowsersTest"/>
         </classes>
     </test>
 </suite>

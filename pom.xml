@@ -67,8 +67,7 @@
                 <version>3.0.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>login_chrome.xml</suiteXmlFile>
-                        <suiteXmlFile>login_firefox.xml</suiteXmlFile>
+                        <suiteXmlFile>login_multiple_browsers.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
